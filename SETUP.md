@@ -77,8 +77,8 @@ brew install jq curl
 cd ~/Documents
 
 # Cloná el repo (reemplazá <usuario>/<repo> con la URL real)
-git clone https://github.com/<usuario>/CMO.git
-cd CMO
+git clone https://github.com/Egambo10/cmo.git
+cd cmo
 ```
 
 > **Importante:** muchos paths dentro de las skills son absolutos a `/Users/erikgamboa/Documents/CMO/`. Si lo clonás en otra ruta, hay que ajustar — abrí un issue o seguí la sección "Cambiar la ruta base" al final.
