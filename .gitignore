@@ -1,10 +1,10 @@
-# Generated assets — regenerable, don't version
-projects/*/assets/
-projects/*/03-brand-book.pdf
-projects/*/03-brand-book-infographic.png
-
-# Ingested source documents — privacy-sensitive
-projects/*/ingest/
+# BRAND PROJECTS — PRIVATE BY DEFAULT.
+# Every brand under projects/ contains the user's confidential strategy,
+# buyer personas, palette decisions, brand book, and generated assets.
+# These are personal/business data. Do NOT version them in this public repo.
+# (Keep an empty projects/.gitkeep so the directory structure exists for new users.)
+projects/*
+!projects/.gitkeep
 
 # Higgsfield bundled skills — owned by Higgsfield, installed by the user
 # via `npx skills add higgsfield-ai/skills`. The CMO repo references them via
