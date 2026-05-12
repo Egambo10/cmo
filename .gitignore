@@ -17,3 +17,7 @@ projects/*/ingest/
 # OS noise
 .DS_Store
 Thumbs.db
+
+# Claude Code session artifacts
+.claude/scheduled_tasks.lock
+.claude/settings.local.json

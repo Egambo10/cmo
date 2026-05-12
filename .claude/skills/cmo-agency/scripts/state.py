@@ -23,6 +23,7 @@ OPTIONAL_GATES = {"soul_brand_style"}
 ALL_GATES = GATE_ORDER + list(OPTIONAL_GATES)
 TRACKS = {"nuevo", "existente_sin_docs", "existente_con_docs"}
 ASSET_KEYS = {
+    "plan_estrategico_pdf",  # Editorial PDF of 01-plan-estrategico.md, produced at strategy-gate close
     "logo_final",
     "palette_image",
     "typo_sample",
