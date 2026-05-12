@@ -1,0 +1,41 @@
+{
+  "skill_name": "cmo-agency",
+  "evals": [
+    {
+      "id": 1,
+      "name": "new-brand-from-scratch",
+      "prompt": "Quiero empezar una marca de café de especialidad para gente que trabaja desde casa. Apenas estoy validando la idea, no tengo nombre ni nada. Ayúdame.",
+      "expected_output": "Router debe (a) hacer preflight, (b) detectar que no hay brands en projects/, (c) pedir un slug kebab-case, (d) inicializar state, (e) rutear a brand-strategy-interview en track 'nuevo'. NO debe empezar a generar imágenes ni a redactar el plan estratégico directamente."
+    },
+    {
+      "id": 2,
+      "name": "existing-brand-with-pitch-deck",
+      "prompt": "Ya tengo un negocio de calzado deportivo que llevo 2 años operando. Tengo un pitch deck que mandé a inversionistas. Quiero formalizar la marca.",
+      "expected_output": "Router debe (a) hacer preflight, (b) pedir slug si no existe, (c) sugerir dropear el pitch deck en projects/<slug>/ingest/, (d) rutear a brand-strategy-interview en track 'existente_con_docs'. NO debe pedir misión/visión directamente."
+    },
+    {
+      "id": 3,
+      "name": "direct-reel-request-no-brand",
+      "prompt": "Hazme un reel para Instagram de 15 segundos.",
+      "expected_output": "Router debe detectar que NO hay brand activa, explicar en una línea que necesita estrategia + visuals primero, y proponer crear la marca. NO debe abrir social-content-creator. NO debe ejecutar higgsfield."
+    },
+    {
+      "id": 4,
+      "name": "ready-brand-creative-menu",
+      "prompt": "¿Qué podemos hacer hoy con mi marca?",
+      "expected_output": "Si todos los gates (strategy, palette, typo, logo, brandbook) están en true, router debe mostrar el menú de 7 opciones: (1) Reel, (2) Carrusel, (3) Post, (4) Video UGC, (5) Foto UGC, (6) Ad con copy, (7) Infografía. Si algún gate está pendiente, router debe rutear al specialist correspondiente."
+    },
+    {
+      "id": 5,
+      "name": "change-palette-after-brandbook",
+      "prompt": "Mira, el morado de la paleta no me convence ya que veo el brand book completo. ¿Lo cambiamos?",
+      "expected_output": "Router debe explicar que va a reabrir el gate 'palette' con state.py reopen, rutear de vuelta a brand-identity-visual, y avisar que después hay que regenerar artefactos downstream (tipografía si depende del color, brand book PDF y infográfico). NO debe simplemente cambiar el archivo .md."
+    },
+    {
+      "id": 6,
+      "name": "wants-listing-marketplace",
+      "prompt": "Necesito imágenes para mi listing de Amazon. El producto es una botella reusable.",
+      "expected_output": "Router debe identificar esto como caso de marketplace-cards (no UGC photo regular), proponer delegar al skill bundled higgsfield-marketplace-cards via subagent, y confirmar que la marca esté lista (gates en verde). Si no está lista, ruteo al gate pendiente."
+    }
+  ]
+}

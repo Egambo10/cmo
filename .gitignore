@@ -1,0 +1,19 @@
+# Generated assets — regenerable, don't version
+projects/*/assets/
+projects/*/03-brand-book.pdf
+projects/*/03-brand-book-infographic.png
+
+# Ingested source documents — privacy-sensitive
+projects/*/ingest/
+
+# Higgsfield bundled skills — owned by Higgsfield, installed by the user
+# via `npx skills add higgsfield-ai/skills`. The CMO repo references them via
+# symlinks under .claude/skills/, which the install command recreates.
+.agents/
+
+# Evals workspace (regenerable, per-developer)
+.claude/skills/*-workspace/
+
+# OS noise
+.DS_Store
+Thumbs.db
