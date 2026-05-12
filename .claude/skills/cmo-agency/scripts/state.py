@@ -23,14 +23,13 @@ OPTIONAL_GATES = {"soul_brand_style"}
 ALL_GATES = GATE_ORDER + list(OPTIONAL_GATES)
 TRACKS = {"nuevo", "existente_sin_docs", "existente_con_docs"}
 ASSET_KEYS = {
-    "plan_estrategico_pdf",  # Editorial PDF of 01-plan-estrategico.md, produced at strategy-gate close
     "logo_final",
     "palette_image",
     "typo_sample",
-    "brandbook_pdf",
+    "brandbook_pdf",            # the SINGLE formal PDF — built by brand-book-publisher at the end
     "brandbook_infographic",
-    "soul_brand_style_id",   # Higgsfield Soul reference id for brand-style consistency
-    "soul_ugc_presenter_id", # Higgsfield Soul reference id for UGC presenter (optional)
+    "soul_brand_style_id",      # Higgsfield Soul reference id for brand-style consistency
+    "soul_ugc_presenter_id",    # Higgsfield Soul reference id for UGC presenter (optional)
 }
 
 

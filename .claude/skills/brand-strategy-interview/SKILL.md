@@ -117,81 +117,17 @@ Cuando tengas los nueve bloques validados (misión, visión, valores, propuesta 
    - **Tono de voz** (dimensiones + ejemplos de cómo sí/no hablar por canal)
 5. Pregunta: *"¿Esto refleja todo lo que platicamos? ¿Algo que quieras ajustar antes de cerrar este entregable?"*
 
-6. **Cuando el usuario apruebe explícitamente** ("sí va", "lockéalo", "ciérralo", "perfecto"), ejecuta el cierre completo en este orden:
+6. **Cuando el usuario apruebe explícitamente** ("sí va", "lockéalo", "ciérralo", "perfecto"):
 
-   **a. Lockea el gate de estrategia:**
    ```bash
    python3 /Users/erikgamboa/Documents/CMO/.claude/skills/cmo-agency/scripts/state.py done <slug> strategy
    ```
 
-   **b. Genera el PDF editorial del plan estratégico vía `canvas-design`.** Este es el entregable formal — debe verse como entregable de agencia, no como un export crudo del markdown. Invoca el skill `anthropic-skills:canvas-design` con este brief:
+   Y regresa el control a `cmo-agency`:
 
-   ```
-   Goal: Produce an editorial agency-quality PDF of the strategic brand plan
-         for the brand "<brand-name>".
+   > *"Listo. **Estrategia cerrada.** El documento de trabajo queda en `01-plan-estrategico.md` — éste lo vas a editar durante el camino si algo cambia. El PDF formal de entregable se genera al final, dentro del brand book, junto con paleta, tipografía y logo. Lo siguiente es darle cuerpo visual a la marca: paleta de colores → tipografía → logo. ¿Le seguimos?"*
 
-   Output path: /Users/erikgamboa/Documents/CMO/projects/<slug>/01-plan-estrategico.pdf
-   Format: A4, portrait, 6-10 pages, agency editorial layout.
-
-   Source content: read /Users/erikgamboa/Documents/CMO/projects/<slug>/01-plan-estrategico.md
-                   verbatim — DO NOT paraphrase, DO NOT skip sections.
-
-   Page structure (one major section per page or spread):
-   1. Cover — brand name in large display type, subtitle "Plan Estratégico de Marca",
-              year, generous whitespace. Treat the cover like a book cover, not a slide.
-   2. Tabla de contenidos.
-   3. Misión + Visión (paired on one spread).
-   4. Valores de marca (3-5 cards/columns, each with title + 1-2 line explanation).
-   5. Propuesta de valor + Posicionamiento (one spread, pull-quote style for the
-      positioning statement).
-   6. Público objetivo y nicho.
-   7. Buyer Persona — render as a structured info card / dossier with sections for
-      demografía, psicografía, goals, pain points, comportamiento, objeciones,
-      canales, mensaje. NOT a plain markdown table — use a designed layout.
-   8. Personalidad de marca (rasgos + "somos X, no Y" rendered with clear contrast).
-   9. Tono de voz (dimensiones + ejemplos sí/no en columnas comparativas por canal).
-   10. Cierre — frase ancla / manifiesto corto + branding del documento + fecha.
-
-   Visual style:
-   - Editorial agency aesthetic. Generous whitespace. Type-led, not decorative.
-   - No stock photography. No clip art. No emojis in the body.
-   - If the brand has palette and typography locked in 02-identidad-visual.md
-     (check first), USE THEM. If not (typical at this stage), use a neutral
-     editorial palette (deep navy + warm off-white + single accent) and a
-     classic editorial type pairing (serif display + clean sans body) — the
-     point is to look professional from page 1, even before visual identity
-     is defined.
-   - Section dividers should feel intentional (large numerals, thin rules,
-     never harsh boxes).
-   - Headers, body, captions clearly distinguished. Treat the buyer persona
-     and tono-de-voz pages as the visual showcase — those are what a client
-     remembers.
-
-   Tone: This is a strategic deliverable a brand consultancy would send to a
-   founder client. Trust the reader. No filler graphics.
-   ```
-
-   Espera a que `canvas-design` confirme que el PDF existe en disco antes de seguir.
-
-   **c. Registra el asset PDF en el state:**
-   ```bash
-   python3 /Users/erikgamboa/Documents/CMO/.claude/skills/cmo-agency/scripts/state.py asset <slug> plan_estrategico_pdf 01-plan-estrategico.pdf
-   ```
-
-   **d. Entrega y handoff.** Regresa al usuario un mensaje del tipo:
-   > *"Listo. **Entregable 1 cerrado: Plan Estratégico de Marca.** Te dejé dos versiones:*
-   > *• `01-plan-estrategico.md` — el documento de trabajo, editable.*
-   > *• `01-plan-estrategico.pdf` — la versión editorial, lista para compartir con tu equipo o cliente.*
-   > *Sigue el **Entregable 2: Manual de Identidad Corporativa** (paleta, tipografía, logo, prompts para IA, aplicaciones de marca). ¿Le seguimos?"*
-
-   Después regresa control a `cmo-agency` (no avances al brand-identity-visual aquí — eso lo decide el usuario en el siguiente mensaje).
-
-### Fallbacks
-
-- **Si `canvas-design` no está disponible:** explica al usuario que el `.md` quedó cerrado correctamente y que el PDF se puede generar después instalando la skill. No falles silenciosamente. No intentes hacer HTML+CSS a mano.
-- **Si el usuario edita el `.md` después de lockear:** ofrece regenerar el PDF (paso b) sobre el contenido actualizado. El gate de estrategia ya está done — no hay que reabrirlo solo para refrescar el PDF.
-
-> El **Entregable 2 (Manual de Identidad Corporativa)** lo construye `brand-identity-visual` (paleta → tipografía → logo + Soul opcional) y lo publica `brand-book-publisher` (PDF + infográfico). Esos PDFs son responsabilidad de esos skills, no de éste.
+> **Importante — un solo PDF formal, no dos.** El brand book final (`03-brand-book.pdf`, lo produce `brand-book-publisher`) es el entregable PDF único de la marca. Contiene la estrategia completa MÁS la identidad visual (logo, paleta, tipografía, aplicaciones). Generar un PDF de "solo estrategia" antes de tener identidad visual significa entregar un documento con paleta y tipografía neutrales que NO son de la marca — eso es ruido visual que confunde al cliente. Por eso este skill solo produce el `.md` editable, y el PDF lo arma `brand-book-publisher` cuando ya hay identidad visual lockeada.
 
 ## Modo fast-track (`--fast-track`)
 

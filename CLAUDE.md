@@ -83,9 +83,8 @@ If Higgsfield is not authenticated, the preflight in `cmo-agency` prints the fix
 projects/<slug>/
 ├── .state.json
 ├── 01-plan-estrategico.md      ← documento de trabajo (editable)
-├── 01-plan-estrategico.pdf     ← entregable editorial (auto-generado al lockear strategy)
-├── 02-identidad-visual.md
-├── 03-brand-book.pdf
+├── 02-identidad-visual.md      ← paleta + tipografía + logo (markdown)
+├── 03-brand-book.pdf           ← ÚNICO PDF formal de la marca (estrategia + identidad visual + aplicaciones, agency-quality, generado por brand-book-publisher)
 ├── 03-brand-book-infographic.png
 ├── assets/
 │   ├── colors/    palette swatches
